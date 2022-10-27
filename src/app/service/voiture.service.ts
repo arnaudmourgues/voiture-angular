@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {Voiture} from "../interface/voiture";
 import { catchError, retry, tap, map } from 'rxjs/operators';
@@ -20,17 +20,15 @@ export class VoitureService {
     return this.http.get<Voiture[]>(this.apiUrl.concat("/getAllVoiture"));
   }
 
-
   createVoiture(snapForm: FormGroup ): Observable<Voiture> {
-    let snapPreview$ = of(snapForm);
-    snapPreview$.pipe(map(snapValue=> ({
-      ...snapValue,
-      id: 0,
-      map: "",
-      status: ""
-    })));
-    let voiture:Voiture;
-    console.log(voiture.map)
-    return this.http.post<Voiture>(this.apiUrl.concat("/createMyVoiture"), snapPreview$);
+    return this.http.post<Voiture>(this.apiUrl.concat("/createMyVoiture"), snapForm.value as Voiture);
+  }
+
+  moveVoiture(snapForm2: FormGroup) {
+    return this.http.put<Voiture>(this.apiUrl.concat("/moveMyVoiture"), snapForm2.value as Voiture);
+  }
+
+  deleteVoiture(snapForm3: FormGroup) {
+    return this.http.delete<Voiture>(this.apiUrl.concat("/deleteById"), {params: snapForm3.value});
   }
 }
