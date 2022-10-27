@@ -1,63 +1,64 @@
-<div class="container">
-    <h2 class="h2  text-center">Ajouter voiture</h2>
-  <br>
-  <form [formGroup]="snapForm">
-    <div class="container ">
+<div class=" row">
+  <div class="col-sm">
+      <h2 class="h2">Ajouter voiture</h2>
+    <br>
+    <form [formGroup]="snapForm">
+      <div class="container ">
 
-      <label class="">Color:</label>
-      <input type="text" formControlName="color" required class="form-control"/>
-      <br>
-      <label>Wheels:</label>
-      <input type="text" formControlName="wheels" required class="form-control"/>
-      <br>
+        <label class="">Color:</label>
+        <input type="text" formControlName="color" required class="form-control"/>
+        <br>
+        <label>Wheels:</label>
+        <input type="text" formControlName="wheels" required class="form-control"/>
+        <br>
 
-      <label for="what3words1">what3words address :</label>
-      <what3words-autosuggest strict="false" api_key="DSC4SN4O">
-        <input type="text" id="what3words1" name="what3words1" class="form-control" #box formControlName="location"/>
-      </what3words-autosuggest>
-      <br>
-      <button type="submit" (click)="formSubmit(box.value)" [disabled]="snapForm.invalid" class="btn">Ajouter</button>
+        <label for="what3words1">what3words address :</label>
+        <what3words-autosuggest strict="false" api_key="DSC4SN4O">
+          <input type="text" id="what3words1" name="what3words1" class="form-control" #box formControlName="location"/>
+        </what3words-autosuggest>
+        <br>
+        <button type="submit" (click)="formSubmit(box.value)" [disabled]="snapForm.invalid" class="btn">Ajouter</button>
 
-    </div>
-  </form>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-sm">
+    <h2 class="h2">Modifier localisation</h2>
+    <br>
+    <form [formGroup]="snapForm2">
+      <div class="container ">
+
+        <label class="">id:</label>
+        <input type="text" formControlName="id" required class="form-control"/>
+        <br>
+        <label for="what3words1">what3words address :</label>
+        <what3words-autosuggest strict="false" api_key="DSC4SN4O">
+          <input type="text" id="what3words2" name="what3words2" class="form-control" #box2 formControlName="location"/>
+        </what3words-autosuggest>
+        <br>
+        <button type="submit" (click)="formSubmit2(box2.value)" [disabled]="snapForm2.invalid" class="btn">Modifier</button>
+
+      </div>
+    </form>
+  </div>
+
+  <div class="col-sm">
+    <h2 class="h2">Delete voiture</h2>
+    <br>
+    <form [formGroup]="snapForm3">
+      <div class="container ">
+
+        <label class="">id:</label>
+        <input type="text" formControlName="id" required class="form-control"/>
+        <br>
+        <button type="submit" (click)="formSubmit3()" [disabled]="snapForm3.invalid" class="btn">Supprimer</button>
+
+      </div>
+    </form>
+  </div>
 </div>
-
-<div class="container">
-  <h2 class="h2  text-center">Modifier localisation</h2>
-  <br>
-  <form [formGroup]="snapForm2">
-    <div class="container ">
-
-      <label class="">id:</label>
-      <input type="text" formControlName="id" required class="form-control"/>
-      <br>
-      <label for="what3words1">what3words address :</label>
-      <what3words-autosuggest strict="false" api_key="DSC4SN4O">
-        <input type="text" id="what3words2" name="what3words2" class="form-control" #box2 formControlName="location"/>
-      </what3words-autosuggest>
-      <br>
-      <button type="submit" (click)="formSubmit2(box2.value)" [disabled]="snapForm2.invalid" class="btn">Modifier</button>
-
-    </div>
-  </form>
-</div>
-
-<div class="container">
-  <h2 class="h2  text-center">Delete voiture</h2>
-  <br>
-  <form [formGroup]="snapForm3">
-    <div class="container ">
-
-      <label class="">id:</label>
-      <input type="text" formControlName="id" required class="form-control"/>
-      <br>
-      <button type="submit" (click)="formSubmit3()" [disabled]="snapForm3.invalid" class="btn">Supprimer</button>
-
-    </div>
-  </form>
-</div>
-
 <br>
-<div *ngFor="let voiture of voitures" class="container">
+<div *ngFor="let voiture of voitures" class="">
   La voiture {{voiture.id}} est de couleur {{voiture.color}} et est garé à <a href="{{voiture.map}}" target="_blank">{{voiture.location}}</a>
 </div>
