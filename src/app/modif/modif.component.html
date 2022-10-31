@@ -1,0 +1,17 @@
+<h2 class="h2">Modifier localisation</h2>
+<br>
+<form [formGroup]="snapForm">
+  <div class="container ">
+
+    <label class="">id:</label>
+    <input type="text" formControlName="id" required class="form-control"/>
+    <br>
+    <label for="what3words">what3words address :</label>
+    <what3words-autosuggest strict="false" api_key="DSC4SN4O">
+      <input type="text" id="what3words" name="what3words" class="form-control" #box2 formControlName="location"/>
+    </what3words-autosuggest>
+    <br>
+    <button type="submit" (click)="formSubmit(box2.value)" [disabled]="snapForm.invalid" class="btn">Modifier</button>
+
+  </div>
+</form>
