@@ -1,0 +1,31 @@
+<h2 id="mapTitle">You can find your what3words address by searching your common address using the search bar.</h2>
+<form [formGroup]="snapForm">
+<what3words-map
+  id="w3w-map"
+  api_key="DSC4SN4O"
+  map_api_key="AIzaSyDQJDW99u6uapq36k7DqoWBRbFmr8sjQVA"
+  zoom="16"
+  lng="2.294694"
+  lat="48.858093"
+  search_control_position="2"
+  map_type_control
+  zoom_control
+  fullscreen_control
+  fullscreen_control_position="3"
+  current_location_control_position="9"
+  disable_default_ui
+  words="records.beards.solar"
+  map_type_id="satellite"
+  provider="google"
+>
+  <div slot="map" id="map"></div>
+  <div slot="search-control">
+    <what3words-autosuggest>
+      <input type="text" placeholder="Search your address here" id="searchBar" #box/>
+
+      <button class="btn btn-success" id="submit" (click)="onClick(box.value)"><i class="bi-check text-success"></i></button>
+    </what3words-autosuggest>
+
+  </div>
+</what3words-map>
+</form>

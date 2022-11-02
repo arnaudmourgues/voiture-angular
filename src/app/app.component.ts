@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {VoitureService} from "./service/voiture.service";
 import {Voiture} from "./interface/voiture";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -6,6 +6,7 @@ import {catchError} from "rxjs/operators";
 import {Observable, throwError} from "rxjs";
 
 import {ViewportScroller} from "@angular/common";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -27,32 +28,19 @@ export class AppComponent implements OnInit{
   ];
 
   title = 'voiture-app';
-  show: boolean = false;
-  buttonState: string = "btn-outline-success";
-  buttonShow: string = "Show";
+  show: boolean = true;
+  buttonState: string = "btn-outline-danger";
+  buttonShow: string = "Hide";
 
   ngOnInit(): void {
     this.onGetVoitures();
-    this.snapForm = this.formBuilder.group({
-      color: [null, Validators.required],
-      wheels: [null, Validators.required],
-      location: [null, Validators.required],
-    });
-    this.snapForm2 = this.formBuilder.group({
-      id: [null, Validators.required],
-      location: [null, Validators.required],
-    });
-
-    this.snapForm3 = this.formBuilder.group({
-      id: [null, Validators.required],
-    });
-
   }
 
   constructor(
     private voitureService: VoitureService,
     private formBuilder: FormBuilder,
-    private scroller: ViewportScroller
+    private scroller: ViewportScroller,
+    private router: Router
   ) {
   }
 
@@ -67,6 +55,8 @@ export class AppComponent implements OnInit{
 
   getVoituresValidate(response: Voiture | Response) {
     alert( "Success !" );
+    console.log( response );
+    this.router.navigate(['/']);
     this.onGetVoitures();
   }
 
@@ -81,26 +71,6 @@ export class AppComponent implements OnInit{
     return throwError(error);
   }
 
-  formSubmit(located: string): void {
-    this.snapForm.get('location')?.setValue(located);
-    this.voitureService.createVoiture(this.snapForm).pipe(
-      catchError(err => this.catchPostError(err))
-    ).subscribe(
-      (response) => this.getVoituresValidate(response)
-    );
-
-  }
-
-  formSubmit2(located: string): void {
-    this.snapForm2.get('location')?.setValue(located);
-    this.voitureService.moveVoiture(this.snapForm2).pipe(
-      catchError(err => this.catchPostError(err))
-    ).subscribe(
-      (response) => this.getVoituresValidate(response)
-    );
-    this.snapForm2.reset();
-  }
-
   formSubmit3(): void {
     this.voitureService.deleteVoiture(this.snapForm3).pipe(
       catchError(err => this.catchPostError(err))
@@ -111,13 +81,11 @@ export class AppComponent implements OnInit{
 
   }
 
-  async toggle() {
+  toggle() {
     this.show = !this.show;
     if (this.show) {
       this.buttonShow = "Hide";
       this.buttonState = "btn-outline-danger";
-      await new Promise(f => setTimeout(f, 20));
-      this.scroller.scrollToAnchor("target");
     } else {
       this.buttonShow = "Show";
       this.buttonState = "btn-outline-success";

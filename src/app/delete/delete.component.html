@@ -1,0 +1,12 @@
+<h2 class="h2">Delete voiture</h2>
+<br>
+<form [formGroup]="snapForm">
+  <div class="container ">
+
+    <label class="">id:</label>
+    <input type="text" formControlName="id" required class="form-control"/>
+    <br>
+    <button type="submit" (click)="formSubmit()" [disabled]="snapForm.invalid" class="btn">Supprimer</button>
+
+  </div>
+</form>
