@@ -12,6 +12,11 @@
     </what3words-autosuggest>
     <br>
     <button type="submit" (click)="formSubmit(box2.value)" [disabled]="snapForm.invalid" class="btn">Modifier</button>
-
+    <br><br>
+    <button class="btn btn-light text-decoration-underline text-info" (click)="openMap()" id="buttonMap">I need help to find my What3words address</button>
+    <br><br>
+    <div id="map" *ngIf="display">
+      <app-w3wmap></app-w3wmap>
+    </div>
   </div>
 </form>

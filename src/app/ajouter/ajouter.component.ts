@@ -42,7 +42,7 @@ export class AjouterComponent implements OnInit {
 
   async openMap() {
     this.display = !this.display;
-    await new Promise(f => setTimeout(f, 20));
+    await new Promise(f => setTimeout(f, 5));
     this.scroller.scrollToAnchor("buttonMap");
   }
 }

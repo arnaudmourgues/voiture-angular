@@ -32,7 +32,7 @@ import { W3wmapComponent } from './w3wmap/w3wmap.component';
     MatTableModule,
 
   ],
-  providers: [],
+  providers: [ModifComponent, AjouterComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

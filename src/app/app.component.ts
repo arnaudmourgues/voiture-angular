@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {VoitureService} from "./service/voiture.service";
 import {Voiture} from "./interface/voiture";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -14,10 +14,7 @@ import {Router} from "@angular/router";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  snapForm!: FormGroup;
-  snapForm2!: FormGroup;
-  snapForm3!: FormGroup;
+export class AppComponent implements OnInit {
   voitures: Voiture[];
   voiture: Voiture;
   displayedColumns: string[] = [
@@ -71,16 +68,6 @@ export class AppComponent implements OnInit{
     return throwError(error);
   }
 
-  formSubmit3(): void {
-    this.voitureService.deleteVoiture(this.snapForm3).pipe(
-      catchError(err => this.catchPostError(err))
-    ).subscribe(
-      (response) => this.getVoituresValidate(response)
-    );
-    this.snapForm3.reset();
-
-  }
-
   toggle() {
     this.show = !this.show;
     if (this.show) {
@@ -91,5 +78,4 @@ export class AppComponent implements OnInit{
       this.buttonState = "btn-outline-success";
     }
   }
-
 }

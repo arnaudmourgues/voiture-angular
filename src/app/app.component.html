@@ -12,10 +12,13 @@
 </div>
 
 <router-outlet></router-outlet>
+
+
+
 <div class="m-3">
   <h3>Show/Hide all voitures</h3>
   <br>
-  <button class="btn {{buttonState}}" (click)="toggle()">{{buttonShow}}</button>
+  <button class="btn {{buttonState}}" (click)="toggle()" id="showHide">{{buttonShow}}</button>
 </div>
 
 <table mat-table [dataSource]="voitures" class="table toggle" *ngIf="show">

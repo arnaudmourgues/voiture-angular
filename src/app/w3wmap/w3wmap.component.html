@@ -4,19 +4,24 @@
   id="w3w-map"
   api_key="DSC4SN4O"
   map_api_key="AIzaSyDQJDW99u6uapq36k7DqoWBRbFmr8sjQVA"
-  zoom="16"
+  zoom="19"
+  selected_zoom="19"
   lng="2.294694"
   lat="48.858093"
+  current_location
   search_control_position="2"
   map_type_control
-  zoom_control
+  zoom_control="enable"
   fullscreen_control
-  fullscreen_control_position="3"
-  current_location_control_position="9"
-  disable_default_ui
   words="records.beards.solar"
-  map_type_id="satellite"
+  fullscreen_control_position="3"
+  current_location_control_position="5"
+  disable_default_ui
+  map_type_id="hybrid"
   provider="google"
+  watch_location="true"
+  street_view_control="enable"
+  language="EN"
 >
   <div slot="map" id="map"></div>
   <div slot="search-control">
@@ -29,3 +34,8 @@
   </div>
 </what3words-map>
 </form>
+<script>
+  document
+    .getElementById("w3w-map")
+    .addEventListener("selected_square", console.log);
+</script>

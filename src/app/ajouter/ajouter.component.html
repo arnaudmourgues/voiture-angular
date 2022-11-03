@@ -11,12 +11,13 @@
     <br>
 
     <label for="what3words1">what3words address :</label>
-    <what3words-autosuggest strict="false" api_key="DSC4SN4O">
+    <what3words-autosuggest variant="inherit" api_key="DSC4SN4O">
       <input type="text" id="what3words1" name="what3words1" class="form-control" #box formControlName="location" [value]="val"/>
     </what3words-autosuggest>
     <br>
     <button type="submit" (click)="formSubmit(box.value)" [disabled]="snapForm.invalid" class="btn">Ajouter</button>
     <br><br>
+
     <button class="btn btn-light text-decoration-underline text-info" (click)="openMap()" id="buttonMap">I need help to find my What3words address</button>
     <br><br>
     <div id="map" *ngIf="display">

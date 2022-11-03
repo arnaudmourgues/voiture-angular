@@ -18,6 +18,7 @@ export class W3wmapComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private ajouter: AjouterComponent,
+    private modif: ModifComponent
 
   ) { }
 
@@ -33,8 +34,9 @@ export class W3wmapComponent implements OnInit {
       this.ajouter.snapForm.get('location')?.setValue(located);
       this.ajouter.display = !this.ajouter.display;
     }else if(this.router.url === "/modif"){
-      this.ajouter.val = located;
-      this.ajouter.snapForm.get('location')?.setValue(located);
+      this.modif.val = located;
+      this.modif.snapForm.get('location')?.setValue(located);
+      this.modif.display = false;
     }
   }
 }
